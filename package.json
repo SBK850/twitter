@@ -2,9 +2,9 @@
     "name": "twitter-embed-server",
     "version": "1.0.0",
     "description": "A server to handle Twitter embed requests",
-    "main": "index.js",
+    "main": "twitter.js",
     "scripts": {
-      "start": "node index.js"
+      "start": "node twitter.js"
     },
     "author": "",
     "license": "ISC",
