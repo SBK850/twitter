@@ -1,11 +1,13 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 const app = express();
 
+app.use(cors()); 
 app.use(express.json());
 
 app.post('/get-twitter-embed', async (req, res) => {
-    const { url } = req.body; // This URL should be the full Twitter URL, not the encoded one
+    const { url } = req.body;
     try {
         const encodedUrl = encodeURIComponent(url);
         const twitterOEmbedUrl = `https://publish.twitter.com/oembed?url=${encodedUrl}&widget=Tweet`;
