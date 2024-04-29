@@ -3,13 +3,13 @@ const axios = require('axios');
 const cors = require('cors');
 const app = express();
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors()); // CORS for all routes
 app.use(express.json());
 
 app.post('/get-twitter-embed', async (req, res) => {
-    const { url } = req.body; // Expect this to be the direct URL of the tweet
+    const { url } = req.body;
 
-    // Correctly construct the oEmbed URL by directly encoding the tweet URL
+    //oEmbed URL by directly encoding the tweet URL
     const twitterOEmbedUrl = `https://publish.twitter.com/oembed?url=${encodeURIComponent(url)}&widget=Tweet`;
 
     try {
@@ -19,15 +19,14 @@ app.post('/get-twitter-embed', async (req, res) => {
             }
         });
 
-        // Respond with the embed code and the requested URL for verification
+        // respond with the embed code and the requested URL for verification
         res.json({
             html: response.data.html,
-            requestedUrl: url // Send back the original URL for verification
+            requestedUrl: url
         });
     } catch (error) {
         console.error('Error fetching Twitter embed code:', error.message);
 
-        // Respond with detailed error information and the requested URL
         res.status(500).json({
             error: 'Failed to fetch Twitter embed code',
             message: error.message,
